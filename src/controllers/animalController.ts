@@ -1,5 +1,7 @@
-import { Request, Response, NextFunction } from "express";
-import { animals, Animal } from "../models/animal";
+import { Request, Response, NextFunction } from 'express';
+import { animals, Animal } from '../models/animal';
+
+// CRUD APIs
 
 // Create a new animal
 export const createAnimal = (
@@ -12,17 +14,17 @@ export const createAnimal = (
     const newAnimal: Animal = {
       id: Date.now(),
       common_name,
-      hawaiian_name: "",
-      scientific_name: "",
-      category: "",
-      animal_class: "",
-      habitat: "",
+      hawaiian_name: '',
+      scientific_name: '',
+      category: '',
+      animal_class: '',
+      habitat: '',
       island_found: [],
-      native_status: "native",
-      conservation_status: "",
-      diet: "",
-      description: "",
-      image_url: "",
+      native_status: 'native',
+      conservation_status: '',
+      diet: '',
+      description: '',
+      image_url: '',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     };
@@ -53,7 +55,7 @@ export const getAnimalById = (
     const id = parseInt(req.params.id as string, 10);
     const animal = animals.find((a) => a.id === id);
     if (!animal) {
-      res.status(404).json({ message: "Animal not found" });
+      res.status(404).json({ message: 'Animal not found' });
       return;
     }
 
@@ -75,7 +77,7 @@ export const updateAnimal = (
     const animalIndex = animals.findIndex((a) => a.id === id);
 
     if (animalIndex === -1) {
-      res.status(404).json({ message: "Animal not found " });
+      res.status(404).json({ message: 'Animal not found ' });
       return;
     }
 
@@ -97,7 +99,7 @@ export const deleteAnimal = (
     const animalIndex = animals.findIndex((a) => a.id === id);
 
     if (animalIndex === -1) {
-      res.status(404).json({ message: "Animal not found" });
+      res.status(404).json({ message: 'Animal not found' });
       return;
     }
 

@@ -9,9 +9,6 @@ import {
 
 const router = Router();
 
-// Export the router
-module.exports = router;
-
 // GET all animals Method
 router.get('/animals', getAnimals);
 
@@ -19,12 +16,12 @@ router.get('/animals', getAnimals);
 router.get('/animals/:id', getAnimalById);
 
 // POST a new animal Method
-router.post('/', createAnimal);
+router.post('/animals', createAnimal);
 
 // UPDATE an animal by ID Method
-router.put('/:id', updateAnimal);
+router.put('/animals/:id', updateAnimal);
 
 // DELETE an animal by ID Method
-router.delete('/:id', deleteAnimal);
+router.delete('/animals/:id', deleteAnimal);
 
 export default router;

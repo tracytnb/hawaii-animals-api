@@ -1,12 +1,11 @@
-import { Request, Response } from 'express';
-import { getAnimals } from '../controllers/animalController';
 import { pool } from '../config/db';
+import supertest from 'supertest';
+import app from '../app';
+import { mockAnimals } from './fixtures/mockAnimals';
 
 // Mock the database module so we don't actually connect to the database
 jest.mock('../config/db', () => ({
-  pool: {
-    query: jest.fn(),
-  },
+  pool: { query: jest.fn() },
 }));
 
 describe('Animal Controller', () => {
@@ -15,63 +14,70 @@ describe('Animal Controller', () => {
     jest.clearAllMocks();
   });
 
-  // Test for empty array
-  it('should return an empty array when no items exist', async () => {
-    // Minimal request object
-    const req = {} as Request;
-    // Mocked res.json so we can assert on its calls
-    const res = {
-      json: jest.fn(),
-    } as unknown as Response;
+  describe('GET /api/animals', () => {
+    it('returns 200 with data and pagination', async () => {
+      (pool.query as jest.Mock)
+        .mockResolvedValueOnce({ rows: [{ count: mockAnimals.length }] })
+        .mockResolvedValueOnce({ rows: mockAnimals });
 
-    // Mock the next function
-    const next = jest.fn();
+      const res = await supertest(app).get('/api/animals');
 
-    // Makes pool.query return a resolved promise with an empty array
-    (pool.query as jest.Mock).mockResolvedValue({ rows: [] });
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty('data');
+      expect(res.body).toHaveProperty('pagination');
+    });
 
-    // Run controller function
-    await getAnimals(req, res, next);
+    it('returns 200 with empty array when DB returns no rows', async () => {
+      (pool.query as jest.Mock)
+        .mockResolvedValueOnce({ rows: [{ count: 0 }] })
+        .mockResolvedValueOnce({ rows: [] });
 
-    // Asserts that res.json was called with exactly []
-    expect(res.json).toHaveBeenCalledWith([]);
-  });
+      const res = await supertest(app).get('/api/animals');
 
-  it('should return all animals', async () => {
-    // Fake data that matches what the controller would get from the DB
-    const mockAnimals = [
-      {
-        id: 1,
-        common_name: 'Nene',
-        hawaiian_name: 'Nēnē',
-        scientific_name: 'Branta sandvicensis',
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty('data');
+      expect(res.body).toHaveProperty('pagination');
+      expect(res.body.data).toEqual([]);
+    });
+
+    it('accepts query parameters: category, island_found, native_status, search, page, limit, sort, order', async () => {
+      (pool.query as jest.Mock)
+        .mockResolvedValueOnce({ rows: [{ count: 2 }] })
+        .mockResolvedValueOnce({ rows: mockAnimals });
+
+      const res = await supertest(app).get('/api/animals').query({
         category: 'bird',
-        animal_class: 'goose',
-        habitat: 'grasslands, shrublands, volcanic slopes',
-        island_found: ['hawaii, maui, kauai, molokai'],
+        island_found: 'hawaii',
         native_status: 'endemic',
-        conservation_status: 'vulnerable',
-        diet: 'grasses, seeds, leaves, berries',
-        description:
-          'The Nēnē is the state bird of Hawaiʻi and is found nowhere else in the world.',
-        image_url: 'https://example.com/nene.jpg',
-      },
-    ];
+        search: 'nene',
+        page: '2',
+        limit: '5',
+        sort: 'common_name',
+        order: 'asc',
+      });
 
-    const req = {} as Request;
-    const res = {
-      json: jest.fn(),
-    } as unknown as Response;
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty('data');
+      expect(res.body).toHaveProperty('pagination');
+      expect(res.body.pagination.page).toBe(2);
+      expect(res.body.pagination.limit).toBe(5);
+    });
 
-    const next = jest.fn();
+    it('returns 400 when native_status is invalid', async () => {
+      const res = await supertest(app).get(
+        '/api/animals?native_status=invalid',
+      );
 
-    // Makes pool.query return a resolved promise with the mock animals
-    (pool.query as jest.Mock).mockResolvedValue({ rows: mockAnimals });
+      expect(res.status).toBe(400);
+      expect(res.body.message).toBe('Validation failed');
+      expect(res.body.errors).toBeDefined();
+      expect(Array.isArray(res.body.errors)).toBe(true);
 
-    // Runs the controller function
-    await getAnimals(req, res, next);
-
-    // Asserts that res.json was called with the mock animals
-    expect(res.json).toHaveBeenCalledWith(mockAnimals);
+      // Check that the error mentions native_status
+      const nativeStatusError = res.body.errors.find(
+        (e: { path?: string }) => e.path === 'native_status',
+      );
+      expect(nativeStatusError).toBeDefined();
+    });
   });
 });

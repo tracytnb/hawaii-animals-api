@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
 import { Pool } from 'pg';
+import { Animal } from '../models/animal';
 
 dotenv.config();
 

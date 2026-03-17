@@ -12,10 +12,10 @@ export const mockAnimals: Animal[] = [
     island_found: ['hawaii, maui, kauai, molokai'],
     native_status: 'endemic',
     conservation_status: 'vulnerable',
-    diet: 'grasses, seeds, leaves, berries',
+    // diet: 'grasses, seeds, leaves, berries',
     description:
       'The Nēnē is the state bird of Hawaiʻi and is found nowhere else in the world.',
-    image_url: 'https://example.com/nene.jpg',
+    // image_url: 'https://example.com/nene.jpg',
   },
   {
     id: 2,
@@ -28,10 +28,10 @@ export const mockAnimals: Animal[] = [
     island_found: ['all main islands', 'northwestern hawaiian islands'],
     native_status: 'endemic',
     conservation_status: 'endangered',
-    diet: 'fish, octopus, crustaceans',
+    // diet: 'fish, octopus, crustaceans',
     description:
       'One of the rarest seals in the world, native only to Hawaiʻi.',
-    image_url: 'https://example.com/monk-seal.jpg',
+    // image_url: 'https://example.com/monk-seal.jpg',
   },
   {
     id: 3,
@@ -44,9 +44,9 @@ export const mockAnimals: Animal[] = [
     island_found: ['all islands'],
     native_status: 'native',
     conservation_status: 'least concern',
-    diet: 'small invertebrates, algae',
+    // diet: 'small invertebrates, algae',
     description: 'A colorful reef fish and the official state fish of Hawaiʻi.',
-    image_url: 'https://example.com/humuhumu.jpg',
+    // image_url: 'https://example.com/humuhumu.jpg',
   },
   {
     id: 4,
@@ -59,10 +59,10 @@ export const mockAnimals: Animal[] = [
     island_found: ['all main islands'],
     native_status: 'native',
     conservation_status: 'critically endangered',
-    diet: 'sponges, sea anemones, algae',
+    // diet: 'sponges, sea anemones, algae',
     description:
       'A rare sea turtle found in tropical oceans, including Hawaiian waters.',
-    image_url: 'https://example.com/hawksbill.jpg',
+    // image_url: 'https://example.com/hawksbill.jpg',
   },
   {
     id: 5,
@@ -75,10 +75,10 @@ export const mockAnimals: Animal[] = [
     island_found: ['hawaii, maui, kauai'],
     native_status: 'endemic',
     conservation_status: 'vulnerable',
-    diet: 'nectar, insects',
+    // diet: 'nectar, insects',
     description:
       'A bright red native Hawaiian honeycreeper known for its curved bill.',
-    image_url: 'https://example.com/iiwi.jpg',
+    // image_url: 'https://example.com/iiwi.jpg',
   },
   {
     id: 6,
@@ -91,10 +91,10 @@ export const mockAnimals: Animal[] = [
     island_found: ['all main islands'],
     native_status: 'native',
     conservation_status: 'least concern',
-    diet: 'algae, seaweed',
+    // diet: 'algae, seaweed',
     description:
       'A unique sea cucumber found in tropical oceans, including Hawaiian waters.',
-    image_url: 'https://example.com/sea-cucumber.jpg',
+    // image_url: 'https://example.com/sea-cucumber.jpg',
   },
   {
     id: 7,
@@ -107,10 +107,10 @@ export const mockAnimals: Animal[] = [
     island_found: ['all main islands'],
     native_status: 'native',
     conservation_status: 'least concern',
-    diet: 'algae, seaweed',
+    // diet: 'algae, seaweed',
     description:
       'A unique sea snail found in tropical oceans, including Hawaiian waters.',
-    image_url: 'https://example.com/opihhi.jpg',
+    // image_url: 'https://example.com/opihhi.jpg',
   },
   {
     id: 8,
@@ -123,10 +123,10 @@ export const mockAnimals: Animal[] = [
     island_found: ['all main islands'],
     native_status: 'native',
     conservation_status: 'least concern',
-    diet: 'algae, seaweed',
+    // diet: 'algae, seaweed',
     description:
       'A unique sea urchin found in tropical oceans, including Hawaiian waters.',
-    image_url: 'https://example.com/sea-urchin.jpg',
+    // image_url: 'https://example.com/sea-urchin.jpg',
   },
   {
     id: 9,
@@ -139,7 +139,7 @@ export const mockAnimals: Animal[] = [
     island_found: ['hawaii, maui, kauai'],
     native_status: 'endemic',
     conservation_status: 'vulnerable',
-    diet: 'nectar, insects',
+    // diet: 'nectar, insects',
   },
   {
     id: 10,
@@ -152,7 +152,7 @@ export const mockAnimals: Animal[] = [
     island_found: ['hawaii, maui, kauai'],
     native_status: 'endemic',
     conservation_status: 'vulnerable',
-    diet: 'nectar, insects',
+    // diet: 'nectar, insects',
     description:
       'A unique myna bird found in tropical oceans, including Hawaiian waters.',
   },

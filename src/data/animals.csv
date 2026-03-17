@@ -1,0 +1,11 @@
+common_name,hawaiian_name,scientific_name,category,animal_class,habitat,island_found,native_status,conservation_status,description
+Hawaiian Monk Seal,ʻIlioholoikauaua,Neomonachus schauinslandi,mammal, marine mammal, coastal waters, "all main islands",endemic,endangered,"One of the rarest seals in the world."
+Nene,Nēnē,Branta sandvicensis,bird, goose, "grasslands, shrublands, volcanic slopes", "hawaii,maui,kauai,molokai",endemic,vulnerable,"The state bird of Hawaiʻi."
+Reef Triggerfish,Humuhumunukunukuāpuaʻa,Rhinecanthus rectangulus,fish, reef fish, coral reefs, "all islands",native,least concern,"A colorful reef fish and the state fish of Hawaiʻi."
+Iiwi,ʻIʻiwi,Drepanis coccinea,bird, honeycreeper, native forests, "hawaii,maui,kauai",endemic,vulnerable,"A native Hawaiian honeycreeper."
+Hawksbill Sea Turtle,ʻEa,Eretmochelys imbricata,reptile, sea turtle, "coral reefs, coastal waters", "main hawaiian islands",native,critically endangered,"A rare sea turtle found in Hawaiian waters."
+Sea Cucumber,Kālua,Holothuria,mollusk, sea cucumber, coral reefs, "all main islands",native,least concern,"A unique sea cucumber found in Hawaiian waters."
+Opihi,Opihi,Opihia hawaiiensis,mollusk, sea snail, coral reefs, "all main islands",native,least concern,"A unique sea snail found in Hawaiian waters."
+Hawaiian Crow,ʻAʻi,Corvus hawaiiensis,bird, crow, native forests, "all main islands",native,least concern,"A native Hawaiian crow."
+Sea urchin,Kālua,Holothuria,mollusk, sea urchin, coral reefs, "all main islands",native,least concern,"A unique sea urchin found in Hawaiian waters."
+Atlantic White Tern,Manu o Ku, Gygis alba, bird, tern, coastal waters, "all main islands",native,least concern,"A native Hawaiian tern."

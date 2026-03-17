@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.4.0",
+    "@types/node": "^25.5.0",
     "@types/pg": "^8.18.0",
     "dotenv": "^17.3.1",
     "eslint": "^10.0.3",
@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@types/supertest": "^7.2.0",
+    "csv-parser": "^3.2.0",
     "express-validator": "^7.3.1",
     "pg": "^8.20.0",
     "swagger-jsdoc": "^6.2.8",

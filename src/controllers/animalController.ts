@@ -69,8 +69,10 @@ export const getAnimals = async (
     const order = req.query.order || 'desc';
 
     // Define allowed columns and sort order
-    const ALLOWED_COLUMNS = ['category', 'island_found', 'native_status'];
-    const sortColumn = ALLOWED_COLUMNS.includes(String(sort));
+    const ALLOWED_COLUMNS = ['id', 'category', 'island_found', 'native_status'];
+    const sortColumn = ALLOWED_COLUMNS.includes(String(sort))
+      ? String(sort)
+      : 'id';
     const sortOrder = order === 'desc' ? 'DESC' : 'ASC';
 
     // Initialize arrays
@@ -111,10 +113,12 @@ export const getAnimals = async (
     // Build base query
     const baseQuery = `SELECT * FROM animals ${whereClause}`;
     // Build paginated query
+    const offset = (page - 1) * limit;
+    values.push(limit, offset);
     const paginatedQuery = `${baseQuery} ORDER BY ${sortColumn} ${sortOrder} LIMIT $${paramIndex} OFFSET $${paramIndex + 1}`;
     // Build count query
     const countQuery = `SELECT COUNT(*)::int FROM animals ${whereClause}`;
-    // Execute count query
+    // Execute count query (exclude limit/offset from count params)
     const countResult = await pool.query(countQuery, values.slice(0, -2));
     const total = countResult.rows[0].count;
 
